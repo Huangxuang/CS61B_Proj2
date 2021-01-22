@@ -12,7 +12,7 @@ public class DrawRandomMap {
     private final static int maxRoomWidth = 5;
     private final static int maxRoomHeight = 5;
 
-    private Random RANDOM;
+    private final Random RANDOM;
     private int worldWidth;
     private int worldHeight;
     private Position initialPosition;
@@ -34,7 +34,7 @@ public class DrawRandomMap {
     }
 
     //Nested class for x,y position.
-    private class Position{
+    private static class Position{
         int positionX;
         int positionY;
 
@@ -55,15 +55,39 @@ public class DrawRandomMap {
         }
     }
 
+    //Randomly generate an x,y starting coordinate.
+    private Position startXY(){
+        int x = RANDOM.nextInt(worldWidth) - maxRoomWidth; //fix by using checkBoundary method
+        int y = RANDOM.nextInt(worldHeight) - maxRoomWidth;
+
+        Position startPoint = new Position(x, y);
+
+        return startPoint;
+    }
+
     //make a room!
     private void makeRoom(Position bottomLeft){
+
         int botLeftX = bottomLeft.positionX;
         int botLeftY = bottomLeft.positionY;
-        //int currentRoomW = RANDOM.nextInt(worldWidth);
-        //int currentRoomH = RANDOM.nextInt(worldHeight);
-        int topRightX = botLeftX + RANDOM.nextInt(worldWidth);
-        int topRightY = botLeftY + RANDOM.nextInt(worldHeight);
 
+        //add offset 3 to make a real room.
+        int topRightX = botLeftX + RANDOM.nextInt(maxRoomWidth) + 3;
+        int topRightY = botLeftY + RANDOM.nextInt(maxRoomHeight) + 3;
+
+        for(int x = botLeftX; x <= topRightX; x++) {
+
+            for(int y = botLeftY; y <= topRightY; y++) {
+                //this.world[x][y] = Tileset.WALL;
+                //distinguish wall and floor, otherwise, draw floor.
+                if(x == botLeftX || x == topRightX || y == botLeftY || y == topRightY){
+                    this.world[x][y] = Tileset.WALL;
+                }
+                else {
+                    this.world[x][y] = Tileset.FLOOR;
+                }
+            }
+        }
 
     }
 
@@ -72,14 +96,37 @@ public class DrawRandomMap {
 
 
 
+
+
+
+
+
     public static void main(String[] args){
-        int width = 80;
-        int height = 80;
+        int worldWidth = 20;  //x coordinate
+        int worldHeight = 20; //y coordinate
 
         TERenderer ter = new TERenderer();
-        ter.initialize(width, height);
+        ter.initialize(worldWidth, worldHeight);
 
-        DrawRandomMap world = new DrawRandomMap(width, height, 1, 1, 45564);
-        world.initialize();
+        //TETile[][] world = new TETile[width][height];
+
+        DrawRandomMap game = new DrawRandomMap(worldWidth, worldHeight, 1, 1, 55);
+
+        Position startPoint = game.startXY();
+        //fill everything with NOTHING
+        game.initialize();
+        game.makeRoom(startPoint);
+        ter.renderFrame(game.world);
+
+        /*TERenderer ter = new TERenderer();
+        ter.initialize(width, height);
+        TETile[][] world = new TETile[width][height];
+        // initialize tiles
+        for (int x = 0; x < width; x += 1) {
+            for (int y = 0; y < height; y += 1) {
+                world[x][y] = Tileset.FLOWER;
+            }
+        }*/
+        //ter.renderFrame(world.world);
     }
 }
