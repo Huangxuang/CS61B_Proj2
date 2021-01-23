@@ -5,18 +5,23 @@ import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 
 import java.util.Random;
+//import java.util.List;
+
 
 public class DrawRandomMap {
 
 
     private final static int maxRoomWidth = 5;
     private final static int maxRoomHeight = 5;
+    private final static int maxHallLength = 10;
+    private final static int hallWidth = 3;
 
-    private final Random RANDOM;
+    private Random RANDOM;
     private int worldWidth;
     private int worldHeight;
     private Position initialPosition;
     private TETile[][] world;
+
 
     /**
      *
@@ -26,7 +31,7 @@ public class DrawRandomMap {
      * @param initialY
      * @param seed = random seed the generate the world
      */
-    DrawRandomMap(int w, int h, int initialX, int initialY, long seed){
+    DrawRandomMap(int w, int h, int initialX, int initialY, long seed) {
         worldWidth = w;
         worldHeight = h;
         initialPosition = new Position(initialX, initialY);
@@ -35,12 +40,20 @@ public class DrawRandomMap {
 
     //Nested class for x,y position.
     private static class Position{
-        int positionX;
-        int positionY;
+        int bottomLeftX;
+        int bottomLeftY;
+        //Upper right position;
+        int upperRightX;
+        int upperRightY;
 
         Position(int x, int y){
-            positionX = x;
-            positionY = y;
+            bottomLeftX = x;
+            bottomLeftY = y;
+        }
+
+        Position(int x1, int y1, int x2, int y2){
+            upperRightX = x2;
+            upperRightY = y2;
         }
 
     }
@@ -66,10 +79,10 @@ public class DrawRandomMap {
     }
 
     //make a room!
-    private void makeRoom(Position bottomLeft){
+    private Position makeRoom(Position initialPoint){
 
-        int botLeftX = bottomLeft.positionX;
-        int botLeftY = bottomLeft.positionY;
+        int botLeftX = initialPoint.bottomLeftX;
+        int botLeftY = initialPoint.bottomLeftY;
 
         //add offset 3 to make a real room.
         int topRightX = botLeftX + RANDOM.nextInt(maxRoomWidth) + 3;
@@ -88,16 +101,58 @@ public class DrawRandomMap {
                 }
             }
         }
+        initialPoint.upperRightX = topRightX;
+        initialPoint.upperRightY = topRightY;
+
+        return initialPoint;
 
     }
+    //Each room has 4 sides, 0 - 3. 0 is on the very left, clockwise.
+    //Generate random of halls(1 - 4) on the room.
+    /*
+    private void generateHalls(){
+        //generate 1 to  4 halls
+       // int numberOfHalls = RANDOM.nextInt(4) + 1
+        int numberOfHalls = 3;
+        //Select which sides to draw
+        for (int i = 0; i < numberOfHalls; i++){
+            int sideToDraw = RANDOM.nextInt(numberOfHalls);
+            //Draw halls according the side number.
+            switch (numberOfHalls){
+                case 0: westHall();
+                case 1: northHall();
+                case 2: eastHall();
+                case 3: southHall();
+            }
+        }
+    }
+    */
 
 
+    private void westHall(Position startPoint){
+        // Draw a random hall;
+        int hallLength = RANDOM.nextInt(maxHallLength);
+        int startX = startPoint.upperRightX;
+        int startY = startPoint.upperRightY;
+        int endX = startX - hallLength;
+        int endY = startY - hallWidth + 1;
+
+        for(int x = startX; x >= endX; x--) {
+
+            for(int y = startY; y >= endY; y--) {
+                //this.world[x][y] = Tileset.WALL;
+                //distinguish wall and floor, otherwise, draw floor.
+                if(x == startX || x == endX || y == startY || y == endY){
+                    this.world[x][y] = Tileset.WALL;
+                }
+                else {
+                    this.world[x][y] = Tileset.FLOOR;
+                }
+            }
+        }
 
 
-
-
-
-
+    }
 
 
 
@@ -111,22 +166,14 @@ public class DrawRandomMap {
         //TETile[][] world = new TETile[width][height];
 
         DrawRandomMap game = new DrawRandomMap(worldWidth, worldHeight, 1, 1, 55);
-
+        Position fixPoint = new Position(0,0,10,10);
         Position startPoint = game.startXY();
         //fill everything with NOTHING
         game.initialize();
-        game.makeRoom(startPoint);
+        Position nextPoint = game.makeRoom(fixPoint);
+        game.westHall(nextPoint);
         ter.renderFrame(game.world);
 
-        /*TERenderer ter = new TERenderer();
-        ter.initialize(width, height);
-        TETile[][] world = new TETile[width][height];
-        // initialize tiles
-        for (int x = 0; x < width; x += 1) {
-            for (int y = 0; y < height; y += 1) {
-                world[x][y] = Tileset.FLOWER;
-            }
-        }*/
-        //ter.renderFrame(world.world);
+
     }
 }

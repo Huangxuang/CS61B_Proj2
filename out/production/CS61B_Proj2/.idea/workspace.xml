@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a8c3ca6f-cb3a-49f9-b906-25638b7b964c" name="Default Changelist" comment="" />
+    <list default="true" id="a8c3ca6f-cb3a-49f9-b906-25638b7b964c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/byog/Core/DrawRandomMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/DrawRandomMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS61B_Proj2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/DrawRandomMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/DrawRandomMap.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,11 +22,17 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.DrawRandomMap">
     <configuration name="BoringWorldDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="byog.lab5.BoringWorldDemo" />
       <module name="CS61B_Proj2" />
@@ -36,8 +46,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DrawRandomMap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="byog.Core.DrawRandomMap" />
+      <module name="CS61B_Proj2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="byog.Core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DrawRandomMap" />
         <item itemvalue="Application.BoringWorldDemo" />
       </list>
     </recent_temporary>
@@ -54,13 +78,37 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state width="1238" height="169" key="GridCell.Tab.0.bottom" timestamp="1611375771284">
+      <screen x="1280" y="25" width="1080" height="1895" />
+    </state>
+    <state width="1238" height="169" key="GridCell.Tab.0.bottom/0.25.1280.695/1280.25.1080.1895@1280.25.1080.1895" timestamp="1611375771284" />
+    <state width="1238" height="169" key="GridCell.Tab.0.bottom/0.25.1280.695@0.25.1280.695" timestamp="1611299011124" />
+    <state width="1238" height="169" key="GridCell.Tab.0.center" timestamp="1611375771281">
+      <screen x="1280" y="25" width="1080" height="1895" />
+    </state>
+    <state width="1238" height="169" key="GridCell.Tab.0.center/0.25.1280.695/1280.25.1080.1895@1280.25.1080.1895" timestamp="1611375771281" />
+    <state width="1238" height="169" key="GridCell.Tab.0.center/0.25.1280.695@0.25.1280.695" timestamp="1611299011123" />
+    <state width="1238" height="169" key="GridCell.Tab.0.left" timestamp="1611375771280">
+      <screen x="1280" y="25" width="1080" height="1895" />
+    </state>
+    <state width="1238" height="169" key="GridCell.Tab.0.left/0.25.1280.695/1280.25.1080.1895@1280.25.1080.1895" timestamp="1611375771280" />
+    <state width="1238" height="169" key="GridCell.Tab.0.left/0.25.1280.695@0.25.1280.695" timestamp="1611299011122" />
+    <state width="1238" height="169" key="GridCell.Tab.0.right" timestamp="1611375771283">
+      <screen x="1280" y="25" width="1080" height="1895" />
+    </state>
+    <state width="1238" height="169" key="GridCell.Tab.0.right/0.25.1280.695/1280.25.1080.1895@1280.25.1080.1895" timestamp="1611375771283" />
+    <state width="1238" height="169" key="GridCell.Tab.0.right/0.25.1280.695@0.25.1280.695" timestamp="1611299011124" />
     <state x="291" y="81" key="NewModule_or_Project.wizard" timestamp="1611015184616">
       <screen x="0" y="25" width="1280" height="695" />
     </state>
     <state x="291" y="81" key="NewModule_or_Project.wizard/0.25.1280.695@0.25.1280.695" timestamp="1611015184616" />
-    <state x="128" y="25" key="SettingsEditor" timestamp="1611014767326">
+    <state x="128" y="25" key="SettingsEditor" timestamp="1611015430741">
       <screen x="0" y="25" width="1280" height="695" />
     </state>
-    <state x="128" y="25" key="SettingsEditor/0.25.1280.695@0.25.1280.695" timestamp="1611014767326" />
+    <state x="128" y="25" key="SettingsEditor/0.25.1280.695@0.25.1280.695" timestamp="1611015430741" />
+    <state x="240" y="137" key="Vcs.Push.Dialog.v2" timestamp="1611016201482">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="240" y="137" key="Vcs.Push.Dialog.v2/0.0.1280.800@0.0.1280.800" timestamp="1611016201482" />
   </component>
 </project>
