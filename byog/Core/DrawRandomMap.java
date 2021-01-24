@@ -14,8 +14,11 @@ public class DrawRandomMap {
     private final static int maxRoomHeight = 5;
     private final static int maxHallLength = 10;
     private final static int hallWidth = 3;
-    private final static String HAll = "HALL";
-    private final static String ROOM = "ROOM";
+    private final static String WEST = "W";
+    private final static String NORTH = "N";
+    private final static String EAST = "E";
+    private final static String SOUTH = "S";
+    private final static String ROOM = "R";
 
 
     private Random RANDOM;
@@ -116,18 +119,27 @@ public class DrawRandomMap {
     //Input contains  upper right and bottom left coordinates of the room
     private void generateHalls(Position p) {
         //generate 1 to  4 halls
-       // int numberOfHalls = RANDOM.nextInt(4) + 1;
-        int numberOfHalls = 3;
+        //int numberOfHalls = RANDOM.nextInt(4) + 1;
+        int numberOfHalls = 4;
         //Select the 1st side to draw hall
-        int sideToDraw = RANDOM.nextInt(4);
+        int sideToDraw = 2;
+        //RANDOM.nextInt(4);
 
         for (int i = 0; i < numberOfHalls; i++) {
             //Draw halls according the side number.
             switch (sideToDraw){
-                case 0: westHall(p);
-                case 1: northHall(p);
-                case 2: eastHall(p);
-                case 3: southHall(p);
+                case 0:
+                    westHall(p);
+                    break;
+                case 1:
+                    northHall(p);
+                    break;
+                case 2:
+                    eastHall(p);
+                    break;
+                case 3:
+                    southHall(p);
+                    break;
             }
             sideToDraw = (sideToDraw + 1) % 4;
         }
@@ -147,7 +159,7 @@ public class DrawRandomMap {
         //roomPositions.bottomLeftX = endX;
         //roomPositions.bottomLeftY = endY;
         Position positionToDraw = new Position(endX, endY, startX, startY);
-        makeRoomHelperTopRight(positionToDraw, HAll);
+        makeRoomHelperTopRight(positionToDraw, WEST);
 
         return positionToDraw;
 
@@ -168,36 +180,43 @@ public class DrawRandomMap {
         Position positionToDraw = new Position(startX, startY, endX, endY);
        // roomPositions.upperRightX = endX;
        // roomPositions.upperRightY = endY;
-        makeRoomHelperBottomLeft(positionToDraw, HAll);
+        makeRoomHelperBottomLeft(positionToDraw, NORTH);
         return positionToDraw;
        // makeRoomHelperBottomLeft(startPoint);
     }
 
-    private void eastHall(Position startPoint){
+    private Position eastHall(Position roomPositions){
+        int roomHeight = roomPositions.getDeltaY();
         int hallLength = RANDOM.nextInt(maxHallLength);
-        int startX = startPoint.bottomLeftX;
-        int startY = startPoint.bottomLeftY;
+
+        int startX = roomPositions.upperRightX;
+        int startY = roomPositions.bottomLeftY + RANDOM.nextInt(roomHeight - 1);
+
         int endX = startX + hallLength;
         int endY = startY + hallWidth - 1;
 
-        startPoint.upperRightX = endX;
-        startPoint.upperRightY = endY;
+        //roomPositions.upperRightX = endX;
+        //roomPositions.upperRightY = endY;
 
+        Position positionToDraw = new Position(startX, startY, endX, endY);
+        makeRoomHelperBottomLeft(positionToDraw, EAST);
         //makeRoomHelperBottomLeft(startPoint);
+        return positionToDraw;
     }
 
-    private void southHall(Position startPoint){
+    private Position southHall(Position roomPositions){
+        int roomWidth = roomPositions.getDeltaX();
         int hallLength = RANDOM.nextInt(maxHallLength);
-        int startX = startPoint.upperRightX;
-        int startY = startPoint.upperRightY;
+
+        int startX = roomPositions.bottomLeftX + 2 +RANDOM.nextInt(roomWidth - 1);
+        int startY = roomPositions.bottomLeftY;
 
         int endX = startX - hallWidth + 1;
         int endY = startY - hallLength;
 
-        startPoint.bottomLeftX = endX;
-        startPoint.bottomLeftY = endY;
-
-        //makeRoomHelperTopRight(startPoint);
+        Position positionToDraw = new Position(endX, endY, startX, startY);
+        makeRoomHelperTopRight(positionToDraw, SOUTH);
+        return positionToDraw;
     }
 
     //helper method to make room/hallway start at bottomLeft.
@@ -219,8 +238,11 @@ public class DrawRandomMap {
                 }
             }
         }
-        if(type == HAll){
+        if(type == NORTH) {
             this.world[x1+1][y1] = Tileset.FLOOR;
+        }
+        if(type == EAST) {
+            this.world[x1][y1+1] = Tileset.FLOOR;
         }
     }
 
@@ -230,7 +252,6 @@ public class DrawRandomMap {
         int y1 = p.upperRightY;
         int x2 = p.bottomLeftX;
         int y2 = p.bottomLeftY;
-
         for(int x = x1; x >= x2; x--) {
             for(int y = y1; y >= y2; y--) {
                 //distinguish wall and floor, otherwise, draw floor.
@@ -242,33 +263,38 @@ public class DrawRandomMap {
                 }
             }
         }
-        if(type == HAll){
+        if(type == WEST){
             this.world[x1][y1-1] = Tileset.FLOOR;
+        }
+        if(type == SOUTH){
+            this.world[x1-1][y1] = Tileset.FLOOR;
         }
 
     }
 
 
     public static void main(String[] args){
-        int worldWidth = 20;  //x coordinate
-        int worldHeight = 20; //y coordinate
+        int worldWidth = 30;  //x coordinate
+        int worldHeight = 30; //y coordinate
 
         TERenderer ter = new TERenderer();
         ter.initialize(worldWidth, worldHeight);
 
         //TETile[][] world = new TETile[width][height];
 
-        DrawRandomMap game = new DrawRandomMap(worldWidth, worldHeight, 1, 1, 154);
-        Position fixPoint = new Position(5,5, 5, 5 );
+        DrawRandomMap game = new DrawRandomMap(worldWidth, worldHeight, 1, 1, 1658);
+        Position fixPoint = new Position(5,10, 5, 5 );
         Position fixPoint2 = new Position(0, 0, 10, 10);
         Position startPoint = game.startXY();
         //fill everything with NOTHING
         game.initialize();
         Position roomPosition = game.makeRoom(fixPoint);
-        game.northHall(roomPosition);
+        game.generateHalls(roomPosition);
+        //game.southHall(roomPosition);
         //game.northHall(fixPoint2);
         //game.southHall(fixPoint2);
         //game.eastHall(fixPoint);
         ter.renderFrame(game.world);
     }
 }
+
