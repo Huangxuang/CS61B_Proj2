@@ -70,7 +70,6 @@ public class DrawRandomMap {
         int getDeltaY() {
             return upperRightY - bottomLeftY;
         }
-
     }
 
     //flush the world with Tileset.NOTHING first;
