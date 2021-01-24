@@ -1,3 +1,7 @@
+/**
+ * 01_24: add size record of map and each hall and room,used for largeEnough() method
+ * current currentMapSize include overlap arear;
+ * */
 package byog.Core;
 
 import byog.TileEngine.TERenderer;
@@ -19,6 +23,7 @@ public class DrawRandomMap {
     private final static String EAST = "E";
     private final static String SOUTH = "S";
     private final static String ROOM = "R";
+    private final static double percentage = 0.8;
 
 
     private Random RANDOM;
@@ -26,6 +31,7 @@ public class DrawRandomMap {
     private int worldHeight;
     private Position initialPosition;
     private TETile[][] world;
+    private int currentMapSize = 0;
 
 
     /**
@@ -41,6 +47,11 @@ public class DrawRandomMap {
         worldHeight = h;
         initialPosition = new Position(initialX, initialY);
         RANDOM = new Random(seed);
+    }
+
+    //return true if currentSize > world size
+    private boolean largeEnough() {
+        return currentMapSize > percentage * (worldHeight - 1) * (worldHeight -1);
     }
 
     //Contains bottom left and upper right points coordinates
@@ -120,7 +131,7 @@ public class DrawRandomMap {
     private void generateHalls(Position p) {
         //generate 1 to  4 halls
         //int numberOfHalls = RANDOM.nextInt(4) + 1;
-        int numberOfHalls = 4;
+        int numberOfHalls = 1;
         //Select the 1st side to draw hall
         int sideToDraw = 2;
         //RANDOM.nextInt(4);
@@ -128,18 +139,14 @@ public class DrawRandomMap {
         for (int i = 0; i < numberOfHalls; i++) {
             //Draw halls according the side number.
             switch (sideToDraw){
-                case 0:
-                    westHall(p);
-                    break;
-                case 1:
-                    northHall(p);
-                    break;
-                case 2:
-                    eastHall(p);
-                    break;
-                case 3:
-                    southHall(p);
-                    break;
+                case 0: westHall(p);
+                break;
+                case 1: northHall(p);
+                break;
+                case 2: eastHall(p);
+                break;
+                case 3: southHall(p);
+                break;
             }
             sideToDraw = (sideToDraw + 1) % 4;
         }
@@ -195,9 +202,6 @@ public class DrawRandomMap {
         int endX = startX + hallLength;
         int endY = startY + hallWidth - 1;
 
-        //roomPositions.upperRightX = endX;
-        //roomPositions.upperRightY = endY;
-
         Position positionToDraw = new Position(startX, startY, endX, endY);
         makeRoomHelperBottomLeft(positionToDraw, EAST);
         //makeRoomHelperBottomLeft(startPoint);
@@ -221,14 +225,16 @@ public class DrawRandomMap {
 
     //helper method to make room/hallway start at bottomLeft.
     //The input Position P contains the botleft and upper right points information
+    //Add variable size to record the size of current Room and Hall
     private void makeRoomHelperBottomLeft(Position p, String type){
         int x1 = p.bottomLeftX;
         int y1 = p.bottomLeftY;
         int x2 = p.upperRightX;
         int y2 = p.upperRightY;
-
+        int size = 0;
         for(int x = x1; x <= x2; x++) {
             for(int y = y1; y <= y2; y++) {
+                size += 1;
                 //distinguish wall and floor, otherwise, draw floor.
                 if(x == x1 || x == x2 || y == y1 || y == y2){
                     this.world[x][y] = Tileset.WALL;
@@ -244,6 +250,8 @@ public class DrawRandomMap {
         if(type == EAST) {
             this.world[x1][y1+1] = Tileset.FLOOR;
         }
+        //update current size of map
+        currentMapSize += size;
     }
 
     //helper method to make room/hallway start at topRight
@@ -252,8 +260,10 @@ public class DrawRandomMap {
         int y1 = p.upperRightY;
         int x2 = p.bottomLeftX;
         int y2 = p.bottomLeftY;
+        int size = 0;
         for(int x = x1; x >= x2; x--) {
             for(int y = y1; y >= y2; y--) {
+                size += 1;
                 //distinguish wall and floor, otherwise, draw floor.
                 if(x == x1 || x == x2 || y == y1 || y == y2){
                     this.world[x][y] = Tileset.WALL;
@@ -269,6 +279,18 @@ public class DrawRandomMap {
         if(type == SOUTH){
             this.world[x1-1][y1] = Tileset.FLOOR;
         }
+        //update current size of map
+        currentMapSize += size;
+    }
+
+    //draw next stuff connected to a Hall
+    public void nextStuff (Position p){
+        //generate 1 to  4 halls
+        //int numberOfHalls = RANDOM.nextInt(4) + 1;
+        int numberOfHalls = 1;
+        //Select the 1st side to draw hall
+        int sideToDraw = 2;
+        //RANDOM.nextInt(4);
 
     }
 
@@ -295,6 +317,7 @@ public class DrawRandomMap {
         //game.southHall(fixPoint2);
         //game.eastHall(fixPoint);
         ter.renderFrame(game.world);
+        System.out.println(game.currentMapSize);
     }
 }
 
