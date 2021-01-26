@@ -8,9 +8,10 @@ import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-//import java.util.List;
+import java.util.List;
 
 
 public class DrawRandomMap {
@@ -26,7 +27,7 @@ public class DrawRandomMap {
     private final static String ROOM = "R";
     private final static String HALL = "H";
     private final static double percentage = 0.8;
-
+    private static List<Position> allPosition = new ArrayList<>();
 
     private Random RANDOM;
     private int worldWidth;
@@ -107,8 +108,9 @@ public class DrawRandomMap {
 
     //make a room!
     //return the upper right and bottom left points position
-    private Position makeRoom(Position initialPoint){
-
+    private Position makeRoom(){
+        Position initialPoint = new Position(worldWidth / 2,worldHeight / 2,
+                worldWidth / 2 + 4,worldHeight / 2 + 4);
         int botLeftX = initialPoint.bottomLeftX;
         int botLeftY = initialPoint.bottomLeftY;
         //Calculate upper right point coordinates
@@ -210,7 +212,7 @@ public class DrawRandomMap {
             int roomWidth = RANDOM.nextInt(maxRoomWidth) + 4;
             int roomHeight = RANDOM.nextInt(maxRoomHeight) + 4;
 
-            int startX = RANDOM.nextInt(preWidth - 2) + prePosition.bottomLeftX;
+            int startX = RANDOM.nextInt(preWidth - 1) + prePosition.bottomLeftX;
             int startY = prePosition.upperRightY;
 
             int endX = startX + roomWidth - 1;
@@ -296,6 +298,11 @@ public class DrawRandomMap {
     //The input Position P contains the botleft and upper right points information
     //Add variable size to record the size of current Room and Hall
     private void makeRoomHelperBottomLeft(Position p, String type){
+        //check if overlap with previous shape or out of world boundary
+        if (checkOverlap(p) || checkBoundary(p)) {
+            System.out.println("Hit boundary");
+            return;
+        }
         int x1 = p.bottomLeftX;
         int y1 = p.bottomLeftY;
         int x2 = p.upperRightX;
@@ -321,10 +328,17 @@ public class DrawRandomMap {
         }
         //update current size of map
         currentMapSize += size;
+        //store shape positions to allPosition
+        allPosition.add(p);
     }
 
     //helper method to draw room/hallway start at topRight
     private void makeRoomHelperTopRight(Position p, String type){
+        //check if overlap with previous shape or out of world boundary
+        if (checkOverlap(p) || checkBoundary(p)) {
+           System.out.println("Hit boundary");
+            return;
+        }
         int x1 = p.upperRightX;
         int y1 = p.upperRightY;
         int x2 = p.bottomLeftX;
@@ -350,7 +364,35 @@ public class DrawRandomMap {
         }
         //update current size of map
         currentMapSize += size;
+        //store shape positions to allPosition
+        allPosition.add(p);
     }
+    //generate the whole world
+    public void generateWorld(){
+        makeRoom();
+        int size = allPosition.size();
+        int i = 0;
+        for(; i < 10; i++){
+            //check if current map is large enough
+            if (largeEnough()){
+                return;
+            }
+            Position p = allPosition.get(i);
+            nextStuff(p);
+        }
+    }
+    /*
+    public void generateWorld(){
+        makeRoom();
+        for(Position p : allPosition){
+            //check if current map is large enough
+            if (largeEnough()){
+                return;
+            }
+            nextStuff(p);
+        }
+    }*/
+
 
     //draw next stuff connected to a Hall
     public void nextStuff (Position prePosition){
@@ -384,24 +426,52 @@ public class DrawRandomMap {
            sideToStart = (sideToStart + 1) % 4;
        }
     }
-
-    private Position sidesToPick(int s, Position prePosition){
-        Position newPosition = new Position(0,0);
-        switch(s){
-            case 0: newPosition = west(prePosition, ROOM); break;
-            case 1: newPosition = north(prePosition, ROOM); break;
-            case 2: newPosition = east(prePosition, ROOM); break;
-            case 3: newPosition = south(prePosition, ROOM); break;
+    //check if nextPosition is out of world boundary
+    private boolean checkBoundary(Position nextPosition) {
+        int x2 = nextPosition.upperRightX;
+        int y2 = nextPosition.upperRightY;
+        int x1 = nextPosition.bottomLeftX;
+        int y1 = nextPosition.bottomLeftY;
+        if ((x1 < 0 || x1 > worldWidth - 1 || x2 < 0 || x2 > worldWidth - 1) ||
+                (y1 < 0 || y1 > worldHeight -1 ||y2 < 0 || y2 > worldHeight -1)) {
+            return true;
         }
-        return newPosition;
+        return false;
+    }
+    //check if next shape at nextPosition is overlapped with any previous shape
+    private boolean checkOverlap(Position nextPosition){
+        //go through allPosition list, check if overlap with all previous position
+        //return true if overlap
+        //(x1,y1) is bot left point, (x2,y2)is upper right corner
+        int x2 = nextPosition.upperRightX;
+        int y2 = nextPosition.upperRightY;
+        int x1 = nextPosition.bottomLeftX;
+        int y1 = nextPosition.bottomLeftY;
+        for (Position p : allPosition){
+            //check if the upper left corner of nextPosition is inside any previous hall/room
+            if  (( x1 < p.upperRightX && x1 > p.bottomLeftX ) && (y2 < p.upperRightY && y2 > p.bottomLeftY)){
+                return true;
+            }
+            //check if the bottom left corner of nextPosition is inside any previous hall/room
+            if  (( x1 < p.upperRightX && x1 > p.bottomLeftX ) && (y1 < p.upperRightY && y1 > p.bottomLeftY)){
+                return true;
+            }
+            //check if the bottom right corner of nextPosition is inside any previous hall/room
+            if  (( x2 < p.upperRightX && x2 > p.bottomLeftX ) && (y1 < p.upperRightY && y1 > p.bottomLeftY)){
+                return true;
+            }
+            //check if the upper right corner of nextPosition is inside any previous hall/room
+            if  (( x2 < p.upperRightX && x2 > p.bottomLeftX ) && (y2 < p.upperRightY && y2 > p.bottomLeftY)){
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
-
-
-
     public static void main(String[] args){
-        int worldWidth = 50;  //x coordinate
+        int worldWidth = 80;  //x coordinate
         int worldHeight = 50; //y coordinate
 
         TERenderer ter = new TERenderer();
@@ -411,13 +481,17 @@ public class DrawRandomMap {
 
         DrawRandomMap game = new DrawRandomMap(worldWidth, worldHeight, 1, 1, 56468);
         Position fixPoint = new Position(25,25, 29, 29 );
-        Position fixPoint2 = new Position(0, 0, 10, 10);
+        Position fixPoint2 = new Position(10,10, 50, 50);
         Position startPoint = game.startXY();
         //fill everything with NOTHING
         game.initialize();
-        Position roomPosition = game.makeRoom(fixPoint);
-        game.makeRoom(roomPosition);
-        game.nextStuff(roomPosition);
+        //Position roomPosition = game.makeRoom(fixPoint);
+        //game.makeRoom(roomPosition);
+        game.generateWorld();
+
+
+
+       // game.nextStuff(roomPosition);
         /* newPosition = game.south(roomPosition, HALL);
         Position newPosition2 = game.south(newPosition, HALL);
         Position newPosition3 = game.south(newPosition2, ROOM);
