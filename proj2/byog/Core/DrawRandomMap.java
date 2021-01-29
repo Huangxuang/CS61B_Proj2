@@ -2,11 +2,11 @@
  * 01_24: add size record of map and each hall and room,used for largeEnough() method
  * current currentMapSize include overlap arear;
  * */
-package byog.Core;
+package proj2.byog.Core;
 
-import byog.TileEngine.TERenderer;
-import byog.TileEngine.TETile;
-import byog.TileEngine.Tileset;
+import proj2.byog.TileEngine.TERenderer;
+import proj2.byog.TileEngine.TETile;
+import proj2.byog.TileEngine.Tileset;
 
 import java.util.ArrayList;
 import java.util.Random;

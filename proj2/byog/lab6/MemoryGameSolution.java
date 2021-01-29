@@ -1,4 +1,4 @@
-package byog.lab6;
+package proj2.byog.lab6;
 
 import edu.princeton.cs.introcs.StdDraw;
 

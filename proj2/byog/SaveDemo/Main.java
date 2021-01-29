@@ -1,4 +1,4 @@
-package byog.SaveDemo;
+package proj2.byog.SaveDemo;
 
 import edu.princeton.cs.introcs.StdDraw;
 import java.io.File;

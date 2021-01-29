@@ -1,8 +1,8 @@
-package byog.lab5;
+package proj2.byog.lab5;
 
-import byog.TileEngine.TERenderer;
-import byog.TileEngine.TETile;
-import byog.TileEngine.Tileset;
+import proj2.byog.TileEngine.TERenderer;
+import proj2.byog.TileEngine.TETile;
+import proj2.byog.TileEngine.Tileset;
 
 import java.util.Random;
 

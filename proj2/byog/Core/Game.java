@@ -1,7 +1,7 @@
-package byog.Core;
+package proj2.byog.Core;
 
-import byog.TileEngine.TERenderer;
-import byog.TileEngine.TETile;
+import proj2.byog.TileEngine.TERenderer;
+import proj2.byog.TileEngine.TETile;
 import edu.princeton.cs.algs4.Draw;
 
 public class Game {

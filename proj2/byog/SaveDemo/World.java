@@ -1,10 +1,10 @@
-package byog.SaveDemo;
+package proj2.byog.SaveDemo;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
-import byog.Core.RandomUtils;
+import proj2.byog.Core.RandomUtils;
 
 import java.awt.Color;
 import java.io.Serializable;
