@@ -25,7 +25,7 @@ public class DrawRandomMap {
     private final static String SOUTH = "S";
     private final static String ROOM = "R";
     private final static String HALL = "H";
-    private final static double percentage = 0.2;
+    private final static double percentage = 0.8;
     private static List<Position> allPosition = new ArrayList<>();
     private final static String UPPER = "U";
     private final static String LOWER = "L";
@@ -45,14 +45,14 @@ public class DrawRandomMap {
      *
      * @param w = width of the world
      * @param h = height of the world
-     * @param initialX  initial position of the world
-     * @param initialY
+    // * @param initialX  initial position of the world
+     //* @param initialY
      * @param seed = random seed the generate the world
      */
-    DrawRandomMap(int w, int h, int initialX, int initialY, long seed) {
+    DrawRandomMap(int w, int h, long seed) {
         worldWidth = w;
         worldHeight = h;
-        initialPosition = new Position(initialX, initialY);
+       // initialPosition = new Position(initialX, initialY);
         RANDOM = new Random(seed);
     }
 
@@ -112,9 +112,9 @@ public class DrawRandomMap {
 
     //make a room!
     //return the upper right and bottom left points position
-    private Position makeRoom(Position initialPoint){
-        /*Position initialPoint = new Position(worldWidth / 2,worldHeight / 2,
-                worldWidth / 2 + 4,worldHeight / 2 + 4);*/
+    private Position makeRoom(){
+        Position initialPoint = new Position(worldWidth / 2,worldHeight / 2,
+                worldWidth / 2 + 4,worldHeight / 2 + 4);
         int botLeftX = initialPoint.bottomLeftX;
         int botLeftY = initialPoint.bottomLeftY;
         //Calculate upper right point coordinates
@@ -128,31 +128,7 @@ public class DrawRandomMap {
         Position roomPositions = new Position(botLeftX,botLeftY,topRightX,topRightY);
         return roomPositions;
     }
-    //Each room has 4 sides, 0 - 3. 0 is on the very left, clockwise.
-    //Generate random of halls(1 - 4) on the room.
-    //Input contains  upper right and bottom left coordinates of the room
-    private void generateHalls(Position p) {
-        //generate 1 to  4 halls
-        //int numberOfHalls = RANDOM.nextInt(4) + 1;
-        int numberOfHalls = 1;
-        //Select the 1st side to draw hall
-        int sideToDraw = RANDOM.nextInt(4);
 
-        for (int i = 0; i < numberOfHalls; i++) {
-            //Draw halls according the side number.
-            switch (sideToDraw){
-                case 0: west(p,HALL);
-                break;
-                case 1: north(p,HALL);
-                break;
-                case 2: east(p, HALL);
-                break;
-                case 3: south(p,HALL);
-                break;
-            }
-            sideToDraw = (sideToDraw + 1) % 4;
-        }
-    }
     // Draw a westHall from upper right
     //input are the two coordinates of the room to draw halls
     private Position west(Position prePosition, String type){
@@ -451,21 +427,23 @@ public class DrawRandomMap {
         allPosition.add(p);
     }
     //generate the whole world
-    public void generateWorld(Position initialPosition){
-        makeRoom(initialPosition);
-        int size;
+    public TETile[][] generateWorld(){
+        initialize();
+        makeRoom();
+        //int size;
         //int size = allPosition.size();
         int i = 0;
         for(; i < allPosition.size(); i++){
             //check if current map is large enough
             if (largeEnough()){
-                System.out.println("Reaches 60% of capacity!");
-                return;
+                System.out.println("Reaches 80% of capacity!");
+                break;
             }
                 Position p = allPosition.get(i);
                 nextStuff(p);
 
         }
+        return world;
     }
 
     //draw next stuff connected to a Hall
@@ -573,19 +551,18 @@ public class DrawRandomMap {
         int worldHeight = 50; //y coordinate
 
         TERenderer ter = new TERenderer();
+        //initialize a new canvas
         ter.initialize(worldWidth, worldHeight);
 
-        //TETile[][] world = new TETile[width][height];
 
-        DrawRandomMap game = new DrawRandomMap(worldWidth, worldHeight, 1, 1, 788);
-        Position fixPoint = new Position(40,45, 45, 49 );
-        Position fixPoint2 = new Position(10,10, 50, 50);
-        Position startPoint = game.startXY();
+        DrawRandomMap game = new DrawRandomMap(worldWidth, worldHeight, 2875);
+
         //fill everything with NOTHING
         game.initialize();
-        Position roomPosition = game.makeRoom(fixPoint);
-        //game.makeRoom(fixPoint);
-        game.generateWorld(fixPoint);
+
+        TETile[][] world = game.generateWorld();
+
+        //game.generateWorld();
         //game.nextStuff(roomPosition);
         /*Position newPosition = game.south(roomPosition, ROOM);
         Position newPosition2 = game.south(newPosition, HALL);
@@ -607,8 +584,12 @@ public class DrawRandomMap {
         //game.northHall(fixPoint2);
         //game.southHall(fixPoint2);
         //game.eastHall(fixPoint);
+        //   ter.renderFrame(world);
+        System.out.println(TETile.toString(game.world));
         ter.renderFrame(game.world);
         System.out.println(game.currentMapSize);
     }
+
+
 }
 
