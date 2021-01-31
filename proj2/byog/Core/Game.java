@@ -66,7 +66,7 @@ public class Game {
 
             default:
                 System.out.println("Invalid input, please re-enter!");
-                //keyboardInput();
+                keyboardInput();
                 processInput(keyboardInput());
         }
         return input;
