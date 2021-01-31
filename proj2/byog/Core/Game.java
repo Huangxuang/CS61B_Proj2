@@ -12,7 +12,7 @@ public class Game {
     TERenderer ter = new TERenderer();
     /* Feel free to change the width and height. */
     public static final int WIDTH = 80;
-    public static final int HEIGHT = 30;
+    public static final int HEIGHT = 40;
 
     /**
      * Method used for playing a fresh game. The game should start from the main menu.
@@ -28,12 +28,18 @@ public class Game {
 
         StdDraw.clear();
         StdDraw.clear(Color.black);
+        //Draw main menu UI
+        drawFrame("", "startUI");
 
-        boolean newGame = true;
-        if(newGame){
-            StdDraw.clear();
-            StdDraw.clear(Color.black);
+    }
 
+    public void drawFrame(String s,String type) {
+        int midWidth = WIDTH / 2;
+        int midHeight = HEIGHT / 2;
+        StdDraw.clear();
+        StdDraw.clear(Color.black);
+
+        if (type == "startUI" ){
             Font startFont = new Font("Monaco", Font.BOLD, 60);
             StdDraw.setFont(startFont);
             StdDraw.setPenColor(Color.white);
@@ -45,11 +51,22 @@ public class Game {
             StdDraw.text(midWidth, midHeight + 3, "New Game(N)" );
             StdDraw.text(midWidth, midHeight, "Load Game(L)" );
             StdDraw.text(midWidth, midHeight - 3, "Quit(Q)" );
-
-            StdDraw.show();
         }
 
+        else if (type == "askSeed" ){
+            Font bigFont = new Font("Monaco", Font.BOLD, 30);
+            StdDraw.setFont(bigFont);
+            StdDraw.setPenColor(Color.white);
+            StdDraw.text(midWidth, midHeight, "Please type in your Seed");
+        }
 
+        else {
+            Font bigFont = new Font("Monaco", Font.BOLD, 30);
+            StdDraw.setFont(bigFont);
+            StdDraw.setPenColor(Color.white);
+            StdDraw.text(midWidth, midHeight, s);
+        }
+            StdDraw.show();
 
     }
 
@@ -57,8 +74,8 @@ public class Game {
     //i.e, New Game, Load and AWSD.
     public String processInput(String input){
         switch(input){
-            case "n" : //newGame(); break;
-                System.out.println("Input N");break;
+            case "n" : newGame(); break;
+                //System.out.println("Input N");break;
             case "l" : //loadGame(); break;
                 System.out.println("Input L"); break;
             case "q" : //quitAndSave(); break;
@@ -71,7 +88,37 @@ public class Game {
         }
         return input;
     }
-    //
+
+    // Ask for seed and generate a new world based on this seed
+    public void newGame(){
+        drawFrame("","askSeed");
+        String input =" ";
+        //Take in seed
+
+            while (input.charAt(input.length() - 1) != 's') {
+                if (!StdDraw.hasNextKeyTyped()) {
+                    continue;
+                }
+                char key = StdDraw.nextKeyTyped();
+                input += Character.toString(key);
+                input = input.toLowerCase();
+                drawFrame(input, "");
+            }
+            //System.out.println(input);
+            String seedToUse = input.substring(1,input.length() - 1);
+            long seed = Long.parseLong(seedToUse);
+            //System.out.println(seed);
+        DrawRandomMap newMap = new DrawRandomMap(80,40,seed);
+        TETile[][] finalWorldFrame = newMap.generateWorld();
+        System.out.println(TETile.toString(finalWorldFrame));
+        ter.renderFrame(finalWorldFrame);
+
+    }
+
+
+
+
+    //read return next keyboard input
     public String keyboardInput(){
         String input ="";
         while(input.length() < 1){
@@ -83,6 +130,7 @@ public class Game {
 
             input = input.toLowerCase();
             System.out.println(input);
+
         }
         return input;
     }
@@ -109,7 +157,7 @@ public class Game {
         //System.out.println(seedToUse);
 
         long seed = Long.parseLong(seedToUse);
-        DrawRandomMap newMap = new DrawRandomMap(80,50,seed);
+        DrawRandomMap newMap = new DrawRandomMap(80,40,seed);
         TETile[][] finalWorldFrame = newMap.generateWorld();
         return finalWorldFrame;
     }
