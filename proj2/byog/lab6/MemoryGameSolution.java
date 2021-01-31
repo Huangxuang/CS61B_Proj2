@@ -45,7 +45,7 @@ public class MemoryGameSolution {
 
     public void startGame() {
         gameOver = false;
-        playerTurn = false;
+        //playerTurn = false;
         round = 1;
 
         while (!gameOver) {
