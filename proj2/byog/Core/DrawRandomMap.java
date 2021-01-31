@@ -46,13 +46,13 @@ public class DrawRandomMap {
      * @param w = width of the world
      * @param h = height of the world
     // * @param initialX  initial position of the world
-     //* @param initialY
+    //* @param initialY
      * @param seed = random seed the generate the world
      */
     DrawRandomMap(int w, int h, long seed) {
         worldWidth = w;
         worldHeight = h;
-       // initialPosition = new Position(initialX, initialY);
+        // initialPosition = new Position(initialX, initialY);
         RANDOM = new Random(seed);
     }
 
@@ -333,7 +333,7 @@ public class DrawRandomMap {
     private void makeRoomHelperBottomLeft(Position p, String type, String whereToDraw){
         //check if overlap with previous shape or out of world boundary
         if (checkOverlap(p) || checkBoundary(p)) {
-            System.out.println("Hit boundary");
+            //System.out.println("Hit boundary");
             return;
         }
         int x1 = p.bottomLeftX;
@@ -382,7 +382,7 @@ public class DrawRandomMap {
     private void makeRoomHelperTopRight(Position p, String type, String whereToDraw){
         //check if overlap with previous shape or out of world boundary
         if (checkOverlap(p) || checkBoundary(p)) {
-           System.out.println("Hit boundary");
+            //System.out.println("Hit boundary");
             return;
         }
         int x1 = p.upperRightX;
@@ -436,11 +436,11 @@ public class DrawRandomMap {
         for(; i < allPosition.size(); i++){
             //check if current map is large enough
             if (largeEnough()){
-                System.out.println("Reaches 80% of capacity!");
+                //System.out.println("Reaches 80% of capacity!");
                 break;
             }
-                Position p = allPosition.get(i);
-                nextStuff(p);
+            Position p = allPosition.get(i);
+            nextStuff(p);
 
         }
         return world;
@@ -454,29 +454,29 @@ public class DrawRandomMap {
         int sideToStart = RANDOM.nextInt(4);
         //RANDOM.nextInt(4);
         //switch case, room or hall.
-       for(int i = 0; i < numberOfItems; i++) {
-           //randomly selects the next side will be hall or room.
-           int roomOrHall = RANDOM.nextInt(2);
-           //int roomOrHall = 1;
-           switch (roomOrHall) {
-               case 0:
-                   switch(sideToStart){
-                       case 0: west(prePosition, ROOM); break;
-                       case 1: north(prePosition, ROOM); break;
-                       case 2: east(prePosition, ROOM); break;
-                       case 3: south(prePosition, ROOM); break;
-                   }
-                   break;
-               case 1: switch(sideToStart){
-                       case 0: west(prePosition, HALL); break;
-                       case 1: north(prePosition, HALL); break;
-                       case 2: east(prePosition, HALL); break;
-                       case 3: south(prePosition, HALL); break;
-                   }
-                   break;
-           }
-           sideToStart = (sideToStart + 1) % 4;
-       }
+        for(int i = 0; i < numberOfItems; i++) {
+            //randomly selects the next side will be hall or room.
+            int roomOrHall = RANDOM.nextInt(2);
+            //int roomOrHall = 1;
+            switch (roomOrHall) {
+                case 0:
+                    switch(sideToStart){
+                        case 0: west(prePosition, ROOM); break;
+                        case 1: north(prePosition, ROOM); break;
+                        case 2: east(prePosition, ROOM); break;
+                        case 3: south(prePosition, ROOM); break;
+                    }
+                    break;
+                case 1: switch(sideToStart){
+                    case 0: west(prePosition, HALL); break;
+                    case 1: north(prePosition, HALL); break;
+                    case 2: east(prePosition, HALL); break;
+                    case 3: south(prePosition, HALL); break;
+                }
+                    break;
+            }
+            sideToStart = (sideToStart + 1) % 4;
+        }
     }
     //check if nextPosition is out of world boundary
     private boolean checkBoundary(Position nextPosition) {
@@ -573,7 +573,7 @@ public class DrawRandomMap {
         Position newPosition7 = game.north(newPosition4, HALL);*/
 
         //Position newPosition2 = game.south(newPosition, ROOM);*/
-       // Position newPosition3 = game.south(newPosition2, ROOM);
+        // Position newPosition3 = game.south(newPosition2, ROOM);
         /*Position newPosition4 = game.west(newPosition3, ROOM);
         Position newPosition5 = game.west(newPosition4, HALL);
         Position newPosition6 = game.north(newPosition5, ROOM);

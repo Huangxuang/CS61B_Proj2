@@ -22,6 +22,8 @@ public class Main {
         } else {
             Game game = new Game();
             game.playWithKeyboard();
+            String input = game.keyboardInput();
+            game.processInput(input);
         }
     }
 }

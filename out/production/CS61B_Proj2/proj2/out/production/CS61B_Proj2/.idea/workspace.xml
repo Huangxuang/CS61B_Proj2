@@ -20,48 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8c3ca6f-cb3a-49f9-b906-25638b7b964c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/byog/Core/DrawRandomMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/Core/Game.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/Core/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/Core/RandomUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/SaveDemo/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/SaveDemo/Square.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/SaveDemo/World.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/TileEngine/TERenderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/TileEngine/TETile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/TileEngine/Tileset.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/lab5/BoringWorldDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/lab5/HexWorld.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/lab5/RandomWorldDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/lab5/project2prep.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/lab6/MemoryGame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/byog/lab6/MemoryGameSolution.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/.idea/CS61B_Proj2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/.idea/libraries/javalib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/DrawRandomMap$Position.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/DrawRandomMap.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/RandomUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/SaveDemo/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/SaveDemo/Square.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/SaveDemo/World.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/TileEngine/TERenderer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/TileEngine/TETile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/TileEngine/Tileset.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/lab5/BoringWorldDemo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/lab5/HexWorld.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/lab5/RandomWorldDemo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/lab5/project2prep.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/lab6/MemoryGame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/lab6/MemoryGameSolution.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/proj2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/byog/Core/DrawRandomMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/DrawRandomMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/byog/Core/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/byog/Core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/byog/Core/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS61B_Proj2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/DrawRandomMap$Position.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/DrawRandomMap$Position.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/DrawRandomMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/DrawRandomMap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS61B_Proj2/byog/Core/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +46,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -90,7 +56,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
+  <component name="RunManager" selected="Application.DrawRandomMap">
     <configuration name="BoringWorldDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="byog.lab5.BoringWorldDemo" />
       <module name="CS61B_Proj2" />
@@ -117,19 +83,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="proj2.byog.Core.Main" />
-      <module name="CS61B_Proj2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="proj2.byog.Core.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="byog.Core.Main" />
       <module name="CS61B_Proj2" />
@@ -148,13 +101,11 @@
       <item itemvalue="Application.BoringWorldDemo" />
       <item itemvalue="Application.DrawRandomMap" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.Main (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.DrawRandomMap" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.BoringWorldDemo" />
       </list>
     </recent_temporary>
@@ -183,50 +134,49 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="172" y="25" width="1071" height="695" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611908702099">
-      <screen x="0" y="25" width="1280" height="695" />
+    <state x="172" y="56" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611825494546">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="172" y="56" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1611905900192" />
-    <state x="172" y="25" width="1071" height="695" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1280.695@0.25.1280.695" timestamp="1611908702099" />
-    <state width="1238" height="210" key="GridCell.Tab.0.bottom" timestamp="1611906664605">
-      <screen x="0" y="25" width="1280" height="695" />
+    <state x="172" y="56" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1611825494546" />
+    <state width="1238" height="263" key="GridCell.Tab.0.bottom" timestamp="1611862272207">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1878" height="305" key="GridCell.Tab.0.bottom/0.0.1280.800/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611385351840" />
-    <state width="1238" height="210" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1611906442766" />
+    <state width="1238" height="263" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1611862272207" />
     <state width="1878" height="376" key="GridCell.Tab.0.bottom/0.25.1280.695/1280.-43.1920.1055@1280.-43.1920.1055" timestamp="1611385479391" />
     <state width="1878" height="376" key="GridCell.Tab.0.bottom/0.25.1280.695/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611384653343" />
     <state width="1238" height="169" key="GridCell.Tab.0.bottom/0.25.1280.695/1280.25.1080.1895@1280.25.1080.1895" timestamp="1611375771284" />
-    <state width="1238" height="210" key="GridCell.Tab.0.bottom/0.25.1280.695@0.25.1280.695" timestamp="1611906664605" />
+    <state width="1238" height="210" key="GridCell.Tab.0.bottom/0.25.1280.695@0.25.1280.695" timestamp="1611827291852" />
     <state width="1878" height="376" key="GridCell.Tab.0.bottom/0.25.1280.775/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611384626579" />
-    <state width="1238" height="210" key="GridCell.Tab.0.center" timestamp="1611906664604">
-      <screen x="0" y="25" width="1280" height="695" />
+    <state width="1238" height="263" key="GridCell.Tab.0.center" timestamp="1611862272206">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1878" height="305" key="GridCell.Tab.0.center/0.0.1280.800/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611385351838" />
-    <state width="1238" height="210" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1611906442764" />
+    <state width="1238" height="263" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1611862272206" />
     <state width="1878" height="376" key="GridCell.Tab.0.center/0.25.1280.695/1280.-43.1920.1055@1280.-43.1920.1055" timestamp="1611385479390" />
     <state width="1878" height="376" key="GridCell.Tab.0.center/0.25.1280.695/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611384653340" />
     <state width="1238" height="169" key="GridCell.Tab.0.center/0.25.1280.695/1280.25.1080.1895@1280.25.1080.1895" timestamp="1611375771281" />
-    <state width="1238" height="210" key="GridCell.Tab.0.center/0.25.1280.695@0.25.1280.695" timestamp="1611906664604" />
+    <state width="1238" height="210" key="GridCell.Tab.0.center/0.25.1280.695@0.25.1280.695" timestamp="1611827291851" />
     <state width="1878" height="376" key="GridCell.Tab.0.center/0.25.1280.775/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611384626573" />
-    <state width="1238" height="210" key="GridCell.Tab.0.left" timestamp="1611906664602">
-      <screen x="0" y="25" width="1280" height="695" />
+    <state width="1238" height="263" key="GridCell.Tab.0.left" timestamp="1611862272205">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1878" height="305" key="GridCell.Tab.0.left/0.0.1280.800/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611385351837" />
-    <state width="1238" height="210" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1611906442763" />
+    <state width="1238" height="263" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1611862272205" />
     <state width="1878" height="376" key="GridCell.Tab.0.left/0.25.1280.695/1280.-43.1920.1055@1280.-43.1920.1055" timestamp="1611385479390" />
     <state width="1878" height="376" key="GridCell.Tab.0.left/0.25.1280.695/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611384653334" />
     <state width="1238" height="169" key="GridCell.Tab.0.left/0.25.1280.695/1280.25.1080.1895@1280.25.1080.1895" timestamp="1611375771280" />
-    <state width="1238" height="210" key="GridCell.Tab.0.left/0.25.1280.695@0.25.1280.695" timestamp="1611906664602" />
+    <state width="1238" height="210" key="GridCell.Tab.0.left/0.25.1280.695@0.25.1280.695" timestamp="1611827291851" />
     <state width="1878" height="376" key="GridCell.Tab.0.left/0.25.1280.775/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611384626561" />
-    <state width="1238" height="210" key="GridCell.Tab.0.right" timestamp="1611906664604">
-      <screen x="0" y="25" width="1280" height="695" />
+    <state width="1238" height="263" key="GridCell.Tab.0.right" timestamp="1611862272206">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state width="1878" height="305" key="GridCell.Tab.0.right/0.0.1280.800/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611385351839" />
-    <state width="1238" height="210" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1611906442765" />
+    <state width="1238" height="263" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1611862272206" />
     <state width="1878" height="376" key="GridCell.Tab.0.right/0.25.1280.695/1280.-43.1920.1055@1280.-43.1920.1055" timestamp="1611385479391" />
     <state width="1878" height="376" key="GridCell.Tab.0.right/0.25.1280.695/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611384653341" />
     <state width="1238" height="169" key="GridCell.Tab.0.right/0.25.1280.695/1280.25.1080.1895@1280.25.1080.1895" timestamp="1611375771283" />
-    <state width="1238" height="210" key="GridCell.Tab.0.right/0.25.1280.695@0.25.1280.695" timestamp="1611906664604" />
+    <state width="1238" height="210" key="GridCell.Tab.0.right/0.25.1280.695@0.25.1280.695" timestamp="1611827291852" />
     <state width="1878" height="376" key="GridCell.Tab.0.right/0.25.1280.775/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611384626577" />
     <state width="1238" height="263" key="GridCell.Tab.1.bottom" timestamp="1611862272211">
       <screen x="0" y="0" width="1280" height="800" />
@@ -292,19 +242,15 @@
     <state width="1878" height="376" key="GridCell.Tab.2.right/0.25.1280.695/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611384653354" />
     <state width="1238" height="210" key="GridCell.Tab.2.right/0.25.1280.695@0.25.1280.695" timestamp="1611827291854" />
     <state width="1878" height="376" key="GridCell.Tab.2.right/0.25.1280.775/1280.-68.1920.1080@1280.-68.1920.1080" timestamp="1611384626003" />
-    <state x="228" y="119" key="IDE.errors.dialog" timestamp="1611908837438">
-      <screen x="0" y="25" width="1280" height="695" />
-    </state>
-    <state x="228" y="119" key="IDE.errors.dialog/0.25.1280.695@0.25.1280.695" timestamp="1611908837438" />
     <state x="291" y="64" key="NewModule_or_Project.wizard" timestamp="1611862253999">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="291" y="64" key="NewModule_or_Project.wizard/0.0.1280.800@0.0.1280.800" timestamp="1611862253999" />
     <state x="291" y="81" key="NewModule_or_Project.wizard/0.25.1280.695@0.25.1280.695" timestamp="1611015184616" />
-    <state x="128" y="25" key="SettingsEditor" timestamp="1611908166945">
+    <state x="128" y="25" key="SettingsEditor" timestamp="1611015430741">
       <screen x="0" y="25" width="1280" height="695" />
     </state>
-    <state x="128" y="25" key="SettingsEditor/0.25.1280.695@0.25.1280.695" timestamp="1611908166945" />
+    <state x="128" y="25" key="SettingsEditor/0.25.1280.695@0.25.1280.695" timestamp="1611015430741" />
     <state x="240" y="137" key="Vcs.Push.Dialog.v2" timestamp="1611016201482">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
