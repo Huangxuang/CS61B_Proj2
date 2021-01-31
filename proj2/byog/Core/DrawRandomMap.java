@@ -1,6 +1,8 @@
 /**
  * 01_24: add size record of map and each hall and room,used for largeEnough() method
  * current currentMapSize include overlap arear;
+ *
+ * update on 01_30: comment some Println
  * */
 package proj2.byog.Core;
 
