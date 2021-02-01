@@ -6,6 +6,7 @@ import edu.princeton.cs.algs4.Draw;
 import edu.princeton.cs.introcs.StdDraw;
 
 import java.awt.*;
+import java.io.*;
 import java.util.Locale;
 
 public class Game {
@@ -14,10 +15,21 @@ public class Game {
     public static final int WIDTH = 80;
     public static final int HEIGHT = 40;
 
+    public TETile[][] world;
+
+    public DrawRandomMap map;
+    private long seed;
+
+    private boolean setupMode = true;
+    private static final String NORTH = "w";
+    private static final String SOUTH = "s";
+    private static final String WEST = "a";
+    private static final String EAST = "d";
+
+
     /**
      * Method used for playing a fresh game. The game should start from the main menu.
-     */
-    public void playWithKeyboard() {
+     */ void playWithKeyboard() {
         int midWidth = WIDTH / 2;
         int midHeight = HEIGHT / 2;
 
@@ -70,54 +82,6 @@ public class Game {
 
     }
 
-    //processInput(), distinguish keyboard input between menu and movement.
-    //i.e, New Game, Load and AWSD.
-    public String processInput(String input){
-        switch(input){
-            case "n" : newGame(); break;
-                //System.out.println("Input N");break;
-            case "l" : //loadGame(); break;
-                System.out.println("Input L"); break;
-            case "q" : //quitAndSave(); break;
-                System.out.println("Input Q");break;
-
-            default:
-                System.out.println("Invalid input, please re-enter!");
-                //keyboardInput();
-                processInput(keyboardInput());
-        }
-        return input;
-    }
-
-    // Ask for seed and generate a new world based on this seed
-    public void newGame(){
-        drawFrame("","askSeed");
-        String input =" ";
-        //Take in seed
-
-            while (input.charAt(input.length() - 1) != 's') {
-                if (!StdDraw.hasNextKeyTyped()) {
-                    continue;
-                }
-                char key = StdDraw.nextKeyTyped();
-                input += Character.toString(key);
-                input = input.toLowerCase();
-                drawFrame(input, "");
-            }
-            //System.out.println(input);
-            String seedToUse = input.substring(1,input.length() - 1);
-            long seed = Long.parseLong(seedToUse);
-            //System.out.println(seed);
-        DrawRandomMap newMap = new DrawRandomMap(80,40,seed);
-        TETile[][] finalWorldFrame = newMap.generateWorld();
-        System.out.println(TETile.toString(finalWorldFrame));
-        ter.renderFrame(finalWorldFrame);
-
-    }
-
-
-
-
     //read return next keyboard input
     public String keyboardInput(){
         String input ="";
@@ -134,6 +98,117 @@ public class Game {
         }
         return input;
     }
+
+    //processInput(), distinguish keyboard input between menu and movement.
+    //i.e, New Game, Load and AWSD.
+    public String processInput(String input) throws IOException {
+        if(setupMode) {
+            switch (input) {
+                case "n":
+                    newGame();
+                    setupMode = false;
+                    break;
+                //System.out.println("Input N");break;
+                case "l": load();
+                    System.out.println("Input L");
+                    setupMode = false;
+                    break;
+                case "q":
+                    saveAndQuit();
+                    System.out.println("Input Q");
+                    break;
+                default:
+                    System.out.println("Invalid input, please re-enter!");
+                    //keyboardInput();
+                    processInput(keyboardInput());
+            }
+        }
+        else{
+            switch(input){
+                case NORTH:
+                    //moveNorth();
+                    break;
+                case SOUTH:
+                    //moveSouth();
+                    break;
+                case EAST:
+                    //moveEast();
+                    break;
+                case WEST:
+                    //moveWest();
+                    break;
+            }
+        }
+        return input;
+    }
+
+
+    // Ask for seed and generate a new world based on this seed
+    public void newGame() throws IOException {
+        drawFrame("","askSeed");
+        String input =" ";
+        //Take in seed
+            while (input.charAt(input.length() - 1) != 's') {
+                if (!StdDraw.hasNextKeyTyped()) {
+                    continue;
+                }
+                char key = StdDraw.nextKeyTyped();
+                input += Character.toString(key);
+                input = input.toLowerCase();
+                drawFrame(input, "");
+            }
+            //System.out.println(input);
+            String seedToUse = input.substring(1,input.length() - 1);
+            seed = Long.parseLong(seedToUse);
+            //System.out.println(seed);
+        DrawRandomMap newMap = new DrawRandomMap(80,40,seed);
+        world = newMap.generateWorld();
+        System.out.println(TETile.toString(world));
+        ter.renderFrame(world);
+        //try quitAndSave method, checks for q input.
+        processInput(keyboardInput());
+
+    }
+
+    private void saveAndQuit() throws IOException {
+
+        File fileLocation = new File("save.txt");
+        map = new DrawRandomMap(80, 40, seed);
+        try {
+            FileOutputStream fileOut = new FileOutputStream(fileLocation);
+            ObjectOutputStream output = new ObjectOutputStream(fileOut);
+
+            output.writeObject(map);
+            output.close();
+            fileOut.close();
+        } catch(IOException e){
+            System.out.println(e);
+      }
+        drawFrame("Successfully saved!", "");
+        StdDraw.pause(1000);
+        System.exit(0);
+     }
+
+     private void load() throws IOException {
+
+         //drawFrame("Loading previous game", "");
+         File fileLocation = new File("save.txt");
+
+         try{
+
+             FileInputStream fileIn = new FileInputStream(fileLocation);
+             ObjectInputStream in = new ObjectInputStream(fileIn);
+             map = (DrawRandomMap) in.readObject();
+             drawFrame("Loading previous game with " + map.seed, "");
+             StdDraw.pause(1000);
+             world = map.generateWorld();
+             ter.renderFrame(world);
+         } catch(IOException | ClassNotFoundException i){
+             System.out.println(i);
+         }
+     }
+
+
 
     /**
      * Method used for autograding and testing the game code. The input string will be a series

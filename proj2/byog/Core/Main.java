@@ -3,12 +3,14 @@ package proj2.byog.Core;
 import proj2.byog.TileEngine.TERenderer;
 import proj2.byog.TileEngine.TETile;
 
+import java.io.IOException;
+
 /** This is the main entry point for the program. This class simply parses
  *  the command line inputs, and lets the byog.Core.Game class take over
  *  in either keyboard or input string mode.
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         TERenderer ter = new TERenderer();
         ter.initialize(80,40);
         if (args.length > 1) {

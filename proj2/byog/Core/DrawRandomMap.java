@@ -15,7 +15,7 @@ import java.util.Random;
 import java.util.List;
 
 
-public class DrawRandomMap {
+public class DrawRandomMap implements java.io.Serializable {
     //width and height include 2 side of wall
     private final static int maxRoomWidth = 5;
     private final static int maxRoomHeight = 5;
@@ -33,14 +33,16 @@ public class DrawRandomMap {
     private final static String LOWER = "L";
     private final static String LEFT = "LEFT";
     private final static String RIGHT = "RIGHT";
+    public long seed;
 
 
     private Random RANDOM;
     private int worldWidth;
     private int worldHeight;
     private Position initialPosition;
-    private TETile[][] world;
+    public TETile[][] world;
     private int currentMapSize = 0;
+
 
 
     /**
@@ -54,6 +56,7 @@ public class DrawRandomMap {
     DrawRandomMap(int w, int h, long seed) {
         worldWidth = w;
         worldHeight = h;
+        this.seed = seed;
         // initialPosition = new Position(initialX, initialY);
         RANDOM = new Random(seed);
     }
