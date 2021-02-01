@@ -193,9 +193,7 @@ public class Game {
 
          //drawFrame("Loading previous game", "");
          File fileLocation = new File("save.txt");
-
          try{
-
              FileInputStream fileIn = new FileInputStream(fileLocation);
              ObjectInputStream in = new ObjectInputStream(fileIn);
              map = (DrawRandomMap) in.readObject();
