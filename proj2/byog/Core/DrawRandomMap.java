@@ -34,6 +34,8 @@ public class DrawRandomMap implements java.io.Serializable {
     private final static String LEFT = "LEFT";
     private final static String RIGHT = "RIGHT";
     public long seed;
+    public int playerX;
+    public int playerY;
 
 
     private Random RANDOM;

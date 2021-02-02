@@ -4,6 +4,7 @@ import proj2.byog.TileEngine.TERenderer;
 import proj2.byog.TileEngine.TETile;
 import edu.princeton.cs.algs4.Draw;
 import edu.princeton.cs.introcs.StdDraw;
+import proj2.byog.TileEngine.Tileset;
 
 import java.awt.*;
 import java.io.*;
@@ -17,7 +18,7 @@ public class Game {
 
     public TETile[][] world;
 
-    public DrawRandomMap map;
+    public  DrawRandomMap map;
     private long seed;
 
     private boolean setupMode = true;
@@ -25,6 +26,8 @@ public class Game {
     private static final String SOUTH = "s";
     private static final String WEST = "a";
     private static final String EAST = "d";
+    public static int playerX,playerY ;
+
 
 
     /**
@@ -101,12 +104,12 @@ public class Game {
 
     //processInput(), distinguish keyboard input between menu and movement.
     //i.e, New Game, Load and AWSD.
-    public String processInput(String input) throws IOException {
-        if(setupMode) {
+    public String processInput(String input) throws IOException{
+       // if(setupMode) {
             switch (input) {
                 case "n":
-                    newGame();
                     setupMode = false;
+                    newGame();
                     break;
                 //System.out.println("Input N");break;
                 case "l": load();
@@ -121,30 +124,64 @@ public class Game {
                     System.out.println("Invalid input, please re-enter!");
                     //keyboardInput();
                     processInput(keyboardInput());
-            }
-        }
-        else{
-            switch(input){
-                case NORTH:
-                    //moveNorth();
+                case NORTH: move(NORTH);
                     break;
-                case SOUTH:
-                    //moveSouth();
+                case WEST: move(WEST);
                     break;
-                case EAST:
-                    //moveEast();
+                case SOUTH: move(SOUTH);
                     break;
-                case WEST:
-                    //moveWest();
+                case EAST: move(EAST);
                     break;
             }
-        }
+        //ter.renderFrame(world);
+        //}
+       // else{
+        //    move(input);
+        //}
         return input;
     }
+    public void move(String type){
+         //move to North
+        StdDraw.enableDoubleBuffering();
+        switch (type){
+            case NORTH:
+                if(world[playerX][playerY + 1].equals(Tileset.FLOOR)){
+                    world[playerX][playerY + 1] = Tileset.PLAYER;
+                    world[playerX][playerY ] = Tileset.FLOOR;
+                    playerY += 1;
+                    ter.renderFrame(world);
+                }
+                break;
+            case SOUTH:
+                if(world[playerX][playerY - 1].equals(Tileset.FLOOR)){
+                    world[playerX][playerY - 1] = Tileset.PLAYER;
+                    world[playerX][playerY ] = Tileset.FLOOR;
+                    playerY -= 1;
+                    ter.renderFrame(world);
+                }
+                break;
+            case WEST:
+                if(world[playerX - 1][playerY].equals(Tileset.FLOOR)){
+                    world[playerX - 1][playerY] = Tileset.PLAYER;
+                    world[playerX][playerY ] = Tileset.FLOOR;
+                    playerX -= 1;
+                    ter.renderFrame(world);
+                }
+                break;
+            case EAST:
+                if(world[playerX + 1][playerY].equals(Tileset.FLOOR)){
+                    world[playerX + 1][playerY] = Tileset.PLAYER;
+                    world[playerX][playerY ] = Tileset.FLOOR;
+                    playerX += 1;
+                    ter.renderFrame(world);
+                }
+                break;
 
+        }
+    }
 
     // Ask for seed and generate a new world based on this seed
-    public void newGame() throws IOException {
+    public DrawRandomMap newGame() throws IOException {
         drawFrame("","askSeed");
         String input =" ";
         //Take in seed
@@ -161,49 +198,85 @@ public class Game {
             String seedToUse = input.substring(1,input.length() - 1);
             seed = Long.parseLong(seedToUse);
             //System.out.println(seed);
-        DrawRandomMap newMap = new DrawRandomMap(80,40,seed);
-        world = newMap.generateWorld();
+        this.map = new DrawRandomMap(80,40,seed);
+        world = map.generateWorld();
         System.out.println(TETile.toString(world));
+        //Draw a player at Location (worldWidth / 2 + 1,worldHeight / 2 +1)
+        world[WIDTH / 2 + 1][HEIGHT / 2 +1] = Tileset.PLAYER;
+        playerX = WIDTH / 2 + 1;
+        playerY = HEIGHT/2 + 1;
         ter.renderFrame(world);
         //try quitAndSave method, checks for q input.
-        processInput(keyboardInput());
+        //processInput(keyboardInput());
+        processInputRecursively();
+        return map;
 
     }
 
-    private void saveAndQuit() throws IOException {
+    //take in user input and move accordingly, until received a q for quiteAndSave;
+    private void processInputRecursively() throws IOException{
+        while(true){
+            if (!StdDraw.hasNextKeyTyped()) {
+                continue;
+            }
+            char key = StdDraw.nextKeyTyped();
+            String movement = Character.toString(key);
+            System.out.println(movement);
+            processInput(movement) ;
+        }
+    }
+
+
+    private void saveAndQuit() {
 
         File fileLocation = new File("save.txt");
-        map = new DrawRandomMap(80, 40, seed);
+        //DrawRandomMap map2 = new DrawRandomMap(80, 40, map.seed);
+        //Game game = new Game();
         try {
             FileOutputStream fileOut = new FileOutputStream(fileLocation);
             ObjectOutputStream output = new ObjectOutputStream(fileOut);
 
-            output.writeObject(map);
+            output.writeObject(world);
+            output.writeObject(playerX);
+            output.writeObject(playerY);
+
+
             output.close();
             fileOut.close();
         } catch(IOException e){
-            System.out.println(e);
+            System.out.println("debug me");
       }
         drawFrame("Successfully saved!", "");
         StdDraw.pause(1000);
+        //Reset Setup mode to false
+        setupMode = false;
         System.exit(0);
      }
 
-     private void load() throws IOException {
+     private void load() throws IOException{
 
          //drawFrame("Loading previous game", "");
          File fileLocation = new File("save.txt");
          try{
              FileInputStream fileIn = new FileInputStream(fileLocation);
              ObjectInputStream in = new ObjectInputStream(fileIn);
-             map = (DrawRandomMap) in.readObject();
-             drawFrame("Loading previous game with " + map.seed, "");
+             //map = (DrawRandomMap) in.readObject();
+             world = (TETile[][]) in.readObject();
+             playerX = (Integer) in.readObject();
+             playerY = (Integer) in.readObject();
+
+             drawFrame("Loading previous game", "");
              StdDraw.pause(1000);
-             world = map.generateWorld();
+           //  world = map.generateWorld();
+             //draw previous player position
+             //world[map.playerX][map.playerY] = Tileset.PLAYER;
              ter.renderFrame(world);
          } catch(IOException | ClassNotFoundException i){
              System.out.println(i);
          }
+         //try quitAndSave method, checks for q input.
+         //processInput(keyboardInput());
+         processInputRecursively();
      }
 
 
